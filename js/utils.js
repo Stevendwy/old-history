@@ -3,6 +3,7 @@
  */
 var mumIndex = 0
 var ajaxIndex = 0
+var  language = localStorage.getItem("lang") || navigator.language.split('-')[0]
 export default class Utils {
     /**
      * [ajax ajax]
@@ -19,6 +20,9 @@ export default class Utils {
         let contentTypes = "application/json;charset=UTF-8"
         // }
         $.ajax({
+            headers: {
+                "Sys-Language": language
+            },
             type: type,
             url: hostPort + url,
             data: data,
@@ -164,5 +168,13 @@ export default class Utils {
      */
     static supportShrink() {
         return CSS.supports("animation", "shrink 0.3s forwards")
+    }
+
+    static zhEn(zh, en) {
+        if(language === "en") {
+            return en
+        } else {
+            return zh
+        }
     }
 }

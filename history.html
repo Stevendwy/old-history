@@ -11,46 +11,46 @@
 <body>
 	<div id='header'>
 		<div class='content'>
-			<img id='logo' src='https://cdns.007vin.com/img/p_007.png' alt='logo' onclick="location.href='/'" />
+			<img id='logo' class="world_logo" src='https://cdns.007vin.com/img/p_007.png' alt='logo' onclick="location.href='/'" />
 			<div class='inquires'>
 				<a href='https://007vin.com/?type=vin' target="block">
-					<h1>车架号查询</h1>
+					<h1 class="world_vin"></h1>
 				</a>
 				<a href='https://007vin.com/?type=car' target="block">
-					<h1>车型查询</h1>
+					<h1 class="world_car"></h1>
 				</a>
 				<a href='https://007vin.com/?type=part' target="block">
-					<h1>零件号查询</h1>
+					<h1 class="world_part"></h1>
 				</a>
 				<a href='https://007vin.com/?type=partEng' target="block">
-					<h1>品牌号查询</h1>
+					<h1 class="world_search"></h1>
 				</a>
 			</div>
 			<div id='header-utils' class='utils'>
 				<div class='show'>
 					<a>
-						<div class="FeedBackButton">问题反馈</div>
+						<div class="FeedBackButton world_feedback"></div>
 					</a>
 					<div id='person' class='person'>
-						<div class="center">
-							<span class="icon"></span>个人中心
+						<div class="center wrold_center">
+							<span class="icon"></span>
 						</div>
 						<div class='person-hidden'>
 							<div class="LogoutItem" onclick='location.href = "/user/profile?binds=search&type=messages"'>
 								<img src="https://cdns.007vin.com/img/icon_mess.png" />
-								<span>消息中心</span>
+								<span class="world_message"></span>
 							</div>
 							<div class="LogoutItem" onclick='location.href = "/user/profile?binds=search"'>
 								<img src="https://cdns.007vin.com/img/user_icon.png" />
-								<span>个人中心</span>
+								<span class="world_myaccount"></span>
 							</div>
 							<div class="LogoutItem" onclick='location.href = "/user/profile?binds=home"'>
 								<img src="https://cdns.007vin.com/img/p_pay.png" />
-								<span>续费</span>
+								<span class="world_purchase"></span>
 							</div>
 							<div class="LogoutItem" onclick='location.href = "/logout"'>
 								<img src="https://cdns.007vin.com/img/icon_exit.png" />
-								<span>退出</span>
+								<span class="world_logout"></span>
 							</div>
 						</div>
 					</div>
@@ -60,13 +60,13 @@
 	</div>
 	<div id="title">
 		<div class="title-content">
-				<a class="title-back" href="javascript:history.go(-1)"><返回</a>
+				<a class="title-back world_back" href="javascript:history.go(-1)"></a>
 				<span id="title-content"></span>
 		</div>
 	</div>
 	<div id="vue"></div>
 	<div id="footer">
-		<span onclick="window.toggleUserAgreement()">用户协议</span>
+		<span onclick="window.toggleUserAgreement()" class="world_agreement"></span>
 		<span>Copyright 2017 All Rights Reserved</span>
 	</span>
 	<div id="user-agreement"></div>
@@ -75,6 +75,64 @@
 	<script src="https://cdns.007vin.com/js/history.js"></script>
 	<script src="https://cdns.007vin.com/js/html2canvas.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="https://cdns.007vin.com/js/drawDom.js"></script>
+	<script type="text/javascript">
+		function changeword(){
+			var language = localStorage.getItem("lang") || navigator.language.split('-')[0]
+			if(language === "en"){
+				$(".world_logo").attr("src","https://007vin.com/img/p_007vin.png")
+				$(".world_logo").css({
+						"height":"15px",
+						"width": "69px",
+						"margin-top": "15px"
+					})
+				$(".world_home").text("Home")
+				$(".world_vin").text("VIN")
+				$(".world_car").text("Model")
+				$(".world_part").text("Part")
+				$(".world_search").text("Article")
+
+				$(".world_feedback").text("Feedback")
+				$(".world_feedback").css({
+					"right":"125px"
+				})
+
+				$(".world_message").text("Message")
+				$(".wrold_center").text("Account")
+				$(".world_myaccount").text("Account")
+				$(".world_purchase").text("Purchase")
+				$(".world_logout").text("Log out")
+
+				$('#header-utils').css("width","200px")
+				$(".wrold_center").css({
+					"width":"100px",
+					"backgroundPosition":"92px -182px"
+				})
+				$(".person-hidden").css({
+					"width":"120px"
+				})
+				
+				$(".world_agreement").text("User Agreement")
+				$(".world_back").text("<GoBack")
+			}else{
+				$(".world_logo").attr("src","https://cdns.007vin.com/img/p_007.png")
+				// $(".world_logo").css("height", "20px") 
+				$(".world_home").text("首页")
+				$(".world_vin").text("车架号查询")
+				$(".world_car").text("车型查询")
+				$(".world_part").text("零件号查询")
+				$(".world_search").text("品牌号查询")
+				$(".world_feedback").text("反馈")
+				$(".world_message").text("消息中心")
+				$(".wrold_center").text("个人中心")
+				$(".world_myaccount").text("个人中心")
+				$(".world_purchase").text("续费")
+				$(".world_logout").text("")
+				$(".world_agreement").text("用户协议")
+				$(".world_back").text("<返回")
+			}
+		}
+		changeword()
+	</script>
 </body>
 
 </html>
